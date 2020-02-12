@@ -70,11 +70,11 @@ class CreateRepositoryImplCommand extends GeneratorCommand
         $stub = str_replace(
             [
                 'DummyModel',
-                'DummyContract'
+                'DummyContract',
             ],
             [
                 str_replace('Repository', '', $this->getNameInput()),
-                $this->getNameInput() . 'Interface'
+                $this->getNameInput() . 'Interface',
             ],
             $stub
         );
