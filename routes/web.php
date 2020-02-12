@@ -10,8 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/login', 'AuthController@index')->name('login')->middleware('guest');
+Route::get('/login/gsuit', 'AuthController@redirectToProvider');
+Route::get('/login/callback', 'AuthController@handleProviderCallback');
+Route::get('/logout', 'AuthController@logout')->middleware('auth');
+
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
-Route::get('{path?}', 'RenderWebView')->where('path', '[a-zA-Z0-9-/]+');
+Route::get('{path?}', 'RenderWebView')->where('path', '[a-zA-Z0-9-/]+')->middleware('auth');
