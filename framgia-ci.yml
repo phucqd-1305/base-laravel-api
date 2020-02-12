@@ -1,0 +1,36 @@
+project_type: php
+build:
+  general_test:
+    image: framgiaciteam/laravel-workspace:7.3
+    services:
+      mysql_test:
+        image: mysql:5.7
+        environment:
+          MYSQL_DATABASE: sun-mail
+          MYSQL_USER: sun-mail
+          MYSQL_PASSWORD: root
+          MYSQL_ROOT_PASSWORD: root
+      redis_server:
+        image: redis:latest
+    prepare:
+      - cp .env.example .env
+      - composer install
+      - php artisan key:generate
+      - php artisan config:clear
+      - framgia-ci test-connect mysql_test 3306 30
+      - php artisan migrate --database=mysql_test --env=testing
+      - framgia-ci run --logs
+test:
+  phpcs:
+    ignore: false
+    command: echo '' | phpcs --standard=Framgia --report-checkstyle=.framgia-ci-reports/phpcs.xml --ignore=app/Supports/* app
+  phpunit:
+    ignore: false
+    command:
+      - php -dzend_extension=xdebug.so vendor/bin/phpunit
+        --coverage-clover=.framgia-ci-reports/coverage-clover.xml
+        --coverage-html=.framgia-ci-reports/coverage
+cache:
+  composer:
+    folder: vendor
+    file: composer.lock

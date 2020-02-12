@@ -41,11 +41,11 @@ class RepositoryGenerateCommand extends Command
         $this->callSilent('repository:make-intf', ['name' => $this->argument('name')]);
         $this->callSilent('repository:make-impl', ['name' => $this->argument('name')]);
 
-        $this->info('Generate repository struct success, please copy the code below to your Providers/RepositoryServiceProvider.php');
+        $this->info('Generate Success, please copy the code below to your Providers/RepositoryServiceProvider.php');
         $this->info(PHP_EOL);
         $this->info("'" . $this->argument('name') . "' => [");
-        $this->info("\t\App\Repositories\Contracts\\" . $this->argument('name') . "RepositoryInterface::class,");
-        $this->info("\t\App\Repositories\Eloquents\\" . $this->argument('name') . "Repository::class,");
-        $this->info("],");
+        $this->info("\t\App\Repositories\Contracts\\" . $this->argument('name') . 'RepositoryInterface::class,');
+        $this->info("\t\App\Repositories\Eloquents\\" . $this->argument('name') . 'Repository::class,');
+        $this->info('],');
     }
 }
