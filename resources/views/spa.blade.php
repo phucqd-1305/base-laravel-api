@@ -17,6 +17,6 @@
 <body>
     <div id="app"></div>
 
-    <script type="text/javascript">window.GLOBALS={"user":{!! json_encode($user) !!}}</script>
+    <script type="text/javascript">window.GLOBALS={"auth":{!! json_encode($auth) !!}}</script>
 </body>
 </html>

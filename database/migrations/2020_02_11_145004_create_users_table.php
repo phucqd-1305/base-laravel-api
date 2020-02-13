@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('name')->nullable();
             $table->string('avatar')->nullable();
-            $table->string('role'); // Admin, HR, Interviewer
+            $table->string('role');
             $table->rememberToken();
             $table->timestamps();
         });

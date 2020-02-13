@@ -15,7 +15,7 @@ class RenderWebView extends Controller
     public function __invoke(Request $request)
     {
         return view('spa', [
-            'user' => $request->user(),
+            'auth' => $request->user(),
         ]);
     }
 }
